@@ -16,9 +16,14 @@ public class HttpServer(int port)
 
         while (true)
         {
-            using var connectionSocket = await serverSocket.AcceptAsync();
+            var connectionSocket = await serverSocket.AcceptAsync();
 
-            await HandleConnection(connectionSocket);
+            Task.Run(async () =>
+            {
+                await HandleConnection(connectionSocket);
+
+                connectionSocket.Dispose();
+            });
         }
     }
 

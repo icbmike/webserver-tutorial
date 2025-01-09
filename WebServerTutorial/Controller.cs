@@ -14,6 +14,8 @@ public class Controller
 
     public HttpResponse GetGoodbye(HttpRequest request)
     {
+        Thread.Sleep(30000);
+
         return new HttpResponse(
             200,
             "OK",
