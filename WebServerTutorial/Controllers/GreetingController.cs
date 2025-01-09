@@ -1,6 +1,6 @@
-﻿namespace WebServerTutorial;
+﻿namespace WebServerTutorial.Controllers;
 
-public class Controller
+public class GreetingController
 {
     public HttpResponse GetHello(HttpRequest request)
     {
@@ -14,8 +14,6 @@ public class Controller
 
     public HttpResponse GetGoodbye(HttpRequest request)
     {
-        Thread.Sleep(30000);
-
         return new HttpResponse(
             200,
             "OK",
