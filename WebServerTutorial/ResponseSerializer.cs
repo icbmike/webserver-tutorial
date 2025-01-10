@@ -8,7 +8,7 @@ public class ResponseSerializer
 
         return $"""
                 HTTP/1.0 {statusCode} {statusText}
-                {string.Join(Environment.NewLine, headers.Select((key, value) =>  $"{key}: {value}" ))}
+                {string.Join(Environment.NewLine, headers.Select(kvp =>  $"{kvp.Key}: {kvp.Value}" ))}
 
                 {body}
                 """;

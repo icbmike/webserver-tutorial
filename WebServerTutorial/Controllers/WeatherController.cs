@@ -9,13 +9,13 @@ public class WeatherController
         _weatherService = weatherService;
     }
 
-    public HttpResponse GetForecast(HttpRequest request)
+    public IActionResult GetForecast(HttpRequest request)
     {
-        return new HttpResponse(
-            200, 
-            "OK", 
-            new Dictionary<string, string> { { "Content-Type", "text/plain" } }, 
-            _weatherService.GetForecast()
-        );
+        return new ContentResult<ForecastResponse>(new ForecastResponse { Forecast = _weatherService.GetForecast() });
     }
+}
+
+public class ForecastResponse
+{
+    public string Forecast { get; set; }
 }

@@ -19,6 +19,8 @@ public class HttpServer(int port)
             using var connectionSocket = await serverSocket.AcceptAsync();
            
             await HandleConnection(connectionSocket);
+
+            await connectionSocket.DisconnectAsync(false);
         }
     }
 
