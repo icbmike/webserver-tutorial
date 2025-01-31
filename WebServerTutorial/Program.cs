@@ -7,4 +7,11 @@ await httpServer.Configure(c =>
     {
         c.SetLogger(new ConsoleLogger());
     })
+    .ConfigureMiddleware(builder =>
+    {
+        builder
+            .UseMiddleware(new RequestLoggingMiddleware())
+            .UseMiddleware(new ControllerMiddleware());
+
+    })
 .StartServer();
