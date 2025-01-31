@@ -6,16 +6,17 @@ namespace WebServerTutorial.Server;
 
 public class RequestHandler
 {
-    public static HttpResponse HandleRequest(HttpRequest request)
+    public static HttpResponse HandleRequest(HttpRequest request, HttpServerConfiguration configuration)
     {
         var (method, path, _) = request;
 
         var response = HandleRequestInternal(request);
+        var message = $"{DateTime.Now:O} - {method} {path} - {response.StatusCode} {response.StatusText}";
 
-        Console.ForegroundColor = response.StatusCode is >= 200 and < 300
-            ? ConsoleColor.Green
-            : ConsoleColor.Red;
-        Console.WriteLine($"{DateTime.Now:O} - {method} {path} - {response.StatusCode} {response.StatusText}");
+        if (response.StatusCode is >= 200 and < 300)
+            configuration.Logger.Info(message);
+        else
+            configuration.Logger.Error(message);
 
         return response;
     }
