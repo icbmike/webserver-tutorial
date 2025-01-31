@@ -1,7 +1,8 @@
 ﻿using System.Text.Json;
+using WebServerTutorial.ActionResults;
 using BindingFlags = System.Reflection.BindingFlags;
 
-namespace WebServerTutorial;
+namespace WebServerTutorial.Server;
 
 public class RequestHandler
 {
@@ -58,8 +59,8 @@ public class RequestHandler
             HttpResponse response => response,
             IActionResult actionResult => actionResult.Execute(request),
             _ => new HttpResponse(
-                200, 
-                "OK", 
+                200,
+                "OK",
                 new Dictionary<string, string> { { "Content-Type", "application/json" } },
                 JsonSerializer.Serialize(result)
             )

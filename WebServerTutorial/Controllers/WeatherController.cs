@@ -1,4 +1,8 @@
-﻿namespace WebServerTutorial.Controllers;
+﻿using WebServerTutorial.ActionResults;
+using WebServerTutorial.Server;
+using WebServerTutorial.Services;
+
+namespace WebServerTutorial.Controllers;
 
 public class WeatherController
 {

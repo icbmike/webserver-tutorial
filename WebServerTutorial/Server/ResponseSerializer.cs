@@ -1,4 +1,4 @@
-﻿namespace WebServerTutorial;
+﻿namespace WebServerTutorial.Server;
 
 public class ResponseSerializer
 {
@@ -8,7 +8,7 @@ public class ResponseSerializer
 
         return $"""
                 HTTP/1.0 {statusCode} {statusText}
-                {string.Join(Environment.NewLine, headers.Select(kvp =>  $"{kvp.Key}: {kvp.Value}" ))}
+                {string.Join(Environment.NewLine, headers.Select(kvp => $"{kvp.Key}: {kvp.Value}"))}
 
                 {body}
                 """;

@@ -1,8 +1,9 @@
 ﻿using System.Text.Json;
 using System.Xml;
 using System.Xml.Serialization;
+using WebServerTutorial.Server;
 
-namespace WebServerTutorial;
+namespace WebServerTutorial.ActionResults;
 
 public class ContentResult<T>(T content) : IActionResult where T : class
 {
@@ -12,7 +13,7 @@ public class ContentResult<T>(T content) : IActionResult where T : class
         string contentType;
 
         var acceptsHeader = request.Headers["Accept"];
-        if(acceptsHeader.Contains("application/json"))
+        if (acceptsHeader.Contains("application/json"))
         {
             body = JsonSerializer.Serialize(content, new JsonSerializerOptions { WriteIndented = true });
             contentType = "application/json";
@@ -21,7 +22,7 @@ public class ContentResult<T>(T content) : IActionResult where T : class
         else if (acceptsHeader.Contains("text/xml"))
         {
             var xmlSerializer = new XmlSerializer(typeof(T));
-            
+
             using var sw = new StringWriter();
             using var xmlWriter = XmlWriter.Create(sw);
 

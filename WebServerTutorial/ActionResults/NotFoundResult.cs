@@ -1,4 +1,6 @@
-﻿namespace WebServerTutorial;
+﻿using WebServerTutorial.Server;
+
+namespace WebServerTutorial.ActionResults;
 
 public class NotFoundResult : IActionResult
 {

@@ -1,4 +1,4 @@
-﻿namespace WebServerTutorial;
+﻿namespace WebServerTutorial.Services;
 
 public class WeatherService
 {

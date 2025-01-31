@@ -1,4 +1,4 @@
-﻿namespace WebServerTutorial;
+﻿namespace WebServerTutorial.Server;
 
 public class RequestParser
 {
