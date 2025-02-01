@@ -10,7 +10,7 @@ await httpServer.Configure(c =>
     .ConfigureMiddleware(builder =>
     {
         builder
-            .UseMiddleware(new RequestLoggingMiddleware())
+            .UseMiddleware<RequestLoggingMiddleware>()
             .UseMiddleware(new ControllerMiddleware());
 
     })

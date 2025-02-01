@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Text.Json;
+﻿using System.Text.Json;
 using WebServerTutorial.ActionResults;
 
 namespace WebServerTutorial.Server;
@@ -40,7 +39,7 @@ public class ControllerMiddleware : IMiddleware
 
         if (methodInfo == null) return NotFound();
 
-        var controllerInstance = CreateInstance(controllerType);
+        var controllerInstance = DependencyInjection.CreateInstance(controllerType);
 
         var result = methodInfo.Invoke(controllerInstance, [request])!;
 
@@ -55,19 +54,6 @@ public class ControllerMiddleware : IMiddleware
                 JsonSerializer.Serialize(result)
             )
         };
-    }
-
-    private static object? CreateInstance(Type type)
-    {
-        var constructorInfo = type.GetConstructors(BindingFlags.Public | BindingFlags.Instance).Single();
-
-        var parameterInfos = constructorInfo.GetParameters();
-
-        if (parameterInfos.Length == 0) return Activator.CreateInstance(type);
-
-        var parameterInstances = parameterInfos.Select(pInfo => CreateInstance(pInfo.ParameterType)).ToArray();
-
-        return Activator.CreateInstance(type, parameterInstances);
     }
 
     private static HttpResponse NotFound()

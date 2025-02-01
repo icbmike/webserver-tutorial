@@ -37,7 +37,7 @@ public class HttpServer(int port)
         }
     }
 
-    private async Task HandleConnection(Socket connectionSocket, HttpServerConfiguration configuration, List<IMiddleware> middlewares)
+    private async Task HandleConnection(Socket connectionSocket, HttpServerConfiguration configuration, List<Func<IMiddleware>> middlewares)
     {
         // bytes to text
         var buffer = new ArraySegment<byte>(new byte[2048]);
