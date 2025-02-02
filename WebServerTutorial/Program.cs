@@ -1,6 +1,6 @@
-﻿using WebServerTutorial.Logger;
-using WebServerTutorial.Server;
-using WebServerTutorial.Services;
+﻿using App.Services;
+using Server;
+using Server.Logger;
 
 var httpServer = new HttpServer(9000);
 

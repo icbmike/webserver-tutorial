@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace WebServerTutorial.DependencyInjection;
+namespace Server.DependencyInjection;
 
 public class DependencyInjection
 {

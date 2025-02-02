@@ -1,8 +1,8 @@
-﻿using WebServerTutorial.ActionResults;
-using WebServerTutorial.Server;
-using WebServerTutorial.Services;
+﻿using App.Services;
+using Server;
+using Server.ActionResults;
 
-namespace WebServerTutorial.Controllers;
+namespace App.Controllers;
 
 public class WeatherController
 {

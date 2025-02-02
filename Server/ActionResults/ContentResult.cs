@@ -1,9 +1,8 @@
 ﻿using System.Text.Json;
 using System.Xml;
 using System.Xml.Serialization;
-using WebServerTutorial.Server;
 
-namespace WebServerTutorial.ActionResults;
+namespace Server.ActionResults;
 
 public class ContentResult<T>(T content) : IActionResult where T : class
 {

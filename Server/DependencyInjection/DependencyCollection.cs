@@ -1,4 +1,4 @@
-﻿namespace WebServerTutorial.DependencyInjection;
+﻿namespace Server.DependencyInjection;
 
 public class DependencyCollection(Dictionary<Type, Func<DependencyCollection, object>> registrations)
 {

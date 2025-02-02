@@ -1,6 +1,4 @@
-﻿using WebServerTutorial.Server;
-
-namespace WebServerTutorial.ActionResults;
+﻿namespace Server.ActionResults;
 
 public interface IActionResult
 {

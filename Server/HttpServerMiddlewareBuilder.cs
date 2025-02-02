@@ -1,4 +1,4 @@
-﻿namespace WebServerTutorial.Server;
+﻿namespace Server;
 
 public class HttpServerMiddlewareBuilder
 {

@@ -1,5 +1,5 @@
-﻿using WebServerTutorial.DependencyInjection;
+﻿using Server.DependencyInjection;
 
-namespace WebServerTutorial.Server;
+namespace Server;
 
 public delegate IMiddleware MiddlewareFactory(DependencyCollection dependencyCollection);

@@ -1,4 +1,4 @@
-﻿using WebServerTutorial.Server;
+﻿namespace Server;
 
 public class RequestLoggingMiddleware : IMiddleware
 {

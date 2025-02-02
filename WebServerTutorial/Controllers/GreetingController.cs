@@ -1,6 +1,6 @@
-﻿using WebServerTutorial.Server;
+﻿using Server;
 
-namespace WebServerTutorial.Controllers;
+namespace App.Controllers;
 
 public class GreetingController
 {

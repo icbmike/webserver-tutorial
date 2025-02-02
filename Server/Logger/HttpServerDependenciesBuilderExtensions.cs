@@ -1,6 +1,6 @@
-﻿using WebServerTutorial.DependencyInjection;
+﻿using Server.DependencyInjection;
 
-namespace WebServerTutorial.Logger;
+namespace Server.Logger;
 
 public static class HttpServerDependenciesBuilderExtensions
 {

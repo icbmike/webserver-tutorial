@@ -1,12 +1,13 @@
-﻿using System.Text.Json;
-using WebServerTutorial.ActionResults;
+﻿using System.Reflection;
+using System.Text.Json;
+using Server.ActionResults;
 
-namespace WebServerTutorial.Server;
+namespace Server;
 
 public class ControllerMiddleware : IMiddleware
 {
     public HttpResponse HandleRequest(
-        HttpRequest request, 
+        HttpRequest request,
         Func<HttpRequest, HttpResponse> next,
         HttpServerConfiguration configuration
     )
@@ -17,7 +18,7 @@ public class ControllerMiddleware : IMiddleware
 
         if (pathSegments.Length != 3) return NotFound();
 
-        var controllerType = typeof(RequestHandler).Assembly.GetTypes()
+        var controllerType = Assembly.GetEntryAssembly()!.GetTypes()
             .Where(type => type.Namespace?.EndsWith("Controllers") ?? false)
             .SingleOrDefault(type => string.Equals(
                 type.Name.Substring(0, type.Name.Length - "Controller".Length),

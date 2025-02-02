@@ -1,4 +1,4 @@
-﻿namespace WebServerTutorial.Services;
+﻿namespace App.Services;
 
 public interface IWeatherService
 {

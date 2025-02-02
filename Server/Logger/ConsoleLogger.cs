@@ -1,6 +1,6 @@
-﻿namespace WebServerTutorial.Logger;
+﻿namespace Server.Logger;
 
-internal class ConsoleLogger : ILogger
+public class ConsoleLogger : ILogger
 {
     public void Info(string message)
     {

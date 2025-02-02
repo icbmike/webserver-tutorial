@@ -1,4 +1,4 @@
-﻿namespace WebServerTutorial.Server;
+﻿namespace Server;
 
 public class RequestHandler
 {
@@ -12,8 +12,8 @@ public class RequestHandler
         var currentMiddleware = middlewares.FirstOrDefault();
         var rest = middlewares.Skip(1);
 
-        Func<HttpRequest, HttpResponse> nextFunc = rest.Any() 
-            ? httRequest => ExecuteMiddleware(httRequest, rest, configuration) 
+        Func<HttpRequest, HttpResponse> nextFunc = rest.Any()
+            ? httRequest => ExecuteMiddleware(httRequest, rest, configuration)
             : _ => throw new InvalidOperationException("Last middleware in pipeline shouldn't call next()");
 
         var response = currentMiddleware(configuration.DependencyCollection).HandleRequest(request, nextFunc, configuration);

@@ -1,4 +1,4 @@
-﻿namespace WebServerTutorial.Logger;
+﻿namespace Server.Logger;
 
 public class SilentLogger : ILogger
 {
