@@ -52,7 +52,7 @@ public class HttpServer(int port)
         {
             var bytesReceived = await connectionSocket.ReceiveAsync(buffer);
             if (bytesReceived == 0) return;
-            requestText.Append(Encoding.UTF8.GetString(buffer[new Range(0, bytesReceived - 1)]));
+            requestText.Append(Encoding.UTF8.GetString(buffer[new Range(0, bytesReceived)]));
 
             requestHasMoreBytes = bytesReceived == 2048;
         }

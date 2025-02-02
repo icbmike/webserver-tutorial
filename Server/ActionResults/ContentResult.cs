@@ -32,7 +32,7 @@ public class ContentResult<T>(T content) : IActionResult where T : class
         }
         else
         {
-            body = content.ToString();
+            body = content.ToString()!;
             contentType = "text/plain";
         }
 

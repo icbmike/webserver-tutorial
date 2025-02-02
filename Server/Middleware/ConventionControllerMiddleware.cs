@@ -12,7 +12,7 @@ public class ConventionControllerMiddleware : IMiddleware
         HttpServerConfiguration configuration
     )
     {
-        var (method, path, _) = request;
+        var (method, path, _, _) = request;
 
         var pathSegments = path.Split("/");
 

@@ -1,4 +1,6 @@
-﻿namespace Server;
+﻿using System.Text;
+
+namespace Server;
 
 public class RequestParser
 {
@@ -11,12 +13,29 @@ public class RequestParser
         var method = firstLine[0];
         var path = firstLine[1];
 
-        var headers = requestLines
-            .Skip(1)
-            .TakeWhile(s => !string.IsNullOrWhiteSpace(s))
-            .Select(line => line.Split(": "))
-            .ToDictionary(pair => pair[0], pair => pair[1]);
+        var isParsingHeaders = true;
+        var headers = new Dictionary<string, string>();
+        var body = new StringBuilder();
 
-        return new HttpRequest(method, path, headers);
+        foreach (var line in requestLines.Skip(1))
+        {
+            if (isParsingHeaders)
+            {
+                if (string.IsNullOrWhiteSpace(line))
+                {
+                    isParsingHeaders = false;
+                    continue;
+                }
+
+                var splitHeader = line.Split(": ");
+                headers.Add(splitHeader[0], splitHeader[1]);
+            }
+            else
+            {
+                body.AppendLine(line);
+            }
+        }
+
+        return new HttpRequest(method, path, headers, body.ToString());
     }
 }

@@ -10,7 +10,7 @@ await httpServer
     {
         builder
             .UseMiddleware<RequestLoggingMiddleware>()
-            .UseMiddleware<ConventionControllerMiddleware>();
+            .UseMiddleware<RoutingControllerMiddleware>();
 
     }).ConfigureDependencies(builder =>
     {

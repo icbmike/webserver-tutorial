@@ -1,3 +1,3 @@
 ﻿namespace Server;
 
-public record HttpRequest(string Method, string Path, Dictionary<string, string> Headers);
+public record HttpRequest(string Method, string Path, Dictionary<string, string> Headers, string Body);

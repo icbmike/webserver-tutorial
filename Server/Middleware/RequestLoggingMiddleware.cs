@@ -4,7 +4,7 @@ public class RequestLoggingMiddleware : IMiddleware
 {
     public HttpResponse HandleRequest(HttpRequest request, Func<HttpRequest, HttpResponse> next, HttpServerConfiguration configuration)
     {
-        var (method, path, _) = request;
+        var (method, path, _, _) = request;
 
         var response = next(request);
 
