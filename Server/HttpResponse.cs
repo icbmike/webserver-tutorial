@@ -1,4 +1,6 @@
-﻿namespace Server;
+﻿using System.Text.Json;
+
+namespace Server;
 
 public record HttpResponse(int StatusCode, string StatusText, Dictionary<string, string> Headers, string Body)
 {
@@ -11,4 +13,14 @@ public record HttpResponse(int StatusCode, string StatusText, Dictionary<string,
     public static HttpResponse Unauthorized => new(401, "Unauthorized");
     public static HttpResponse NotFound => new(404, "Not found");
     public static HttpResponse MethodNotSupported => new(405, "Method not supported");
+
+    public static HttpResponse Json(object contents) => new(
+        200,
+        "Ok",
+        new Dictionary<string, string>
+        {
+            {"Content-Type", "application/json"}
+        },
+        JsonSerializer.Serialize(contents)
+    );
 }
