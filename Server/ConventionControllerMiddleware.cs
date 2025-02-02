@@ -4,7 +4,7 @@ using Server.ActionResults;
 
 namespace Server;
 
-public class ControllerMiddleware : IMiddleware
+public class ConventionControllerMiddleware : IMiddleware
 {
     public HttpResponse HandleRequest(
         HttpRequest request,
