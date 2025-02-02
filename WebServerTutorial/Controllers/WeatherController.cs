@@ -6,9 +6,9 @@ namespace WebServerTutorial.Controllers;
 
 public class WeatherController
 {
-    private readonly WeatherService _weatherService;
+    private readonly IWeatherService _weatherService;
 
-    public WeatherController(WeatherService weatherService)
+    public WeatherController(IWeatherService weatherService)
     {
         _weatherService = weatherService;
     }

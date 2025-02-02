@@ -39,7 +39,7 @@ public class ControllerMiddleware : IMiddleware
 
         if (methodInfo == null) return NotFound();
 
-        var controllerInstance = DependencyInjection.CreateInstance(controllerType);
+        var controllerInstance = configuration.DependencyCollection.Resolve(controllerType);
 
         var result = methodInfo.Invoke(controllerInstance, [request])!;
 

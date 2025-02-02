@@ -1,25 +1,28 @@
-﻿namespace WebServerTutorial.Server;
+﻿using WebServerTutorial.DependencyInjection;
+
+namespace WebServerTutorial.Server;
 
 public class HttpServerMiddlewareBuilder
 {
-    private readonly List<Func<IMiddleware>> _middlewares = [];
+    private readonly List<Func<DependencyCollection, IMiddleware>> _middlewares = [];
 
     public HttpServerMiddlewareBuilder UseMiddleware(IMiddleware middleware)
     {
-        _middlewares.Add(() => middleware);
+        _middlewares.Add(_ => middleware);
 
         return this;
     }
 
     public HttpServerMiddlewareBuilder UseMiddleware<T>() where T : class, IMiddleware
     {
-        _middlewares.Add(() => (IMiddleware)DependencyInjection.CreateInstance(typeof(T)));
+        _middlewares.Add(d => d.Resolve<T>());
 
         return this;
     }
 
-    public List<Func<IMiddleware>> Build()
+    public List<Func<DependencyCollection, IMiddleware>> Build()
     {
         return _middlewares;
     }
+
 }

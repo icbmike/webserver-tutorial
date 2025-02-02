@@ -1,18 +1,21 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using WebServerTutorial.DependencyInjection;
 
 namespace WebServerTutorial.Server;
 
 public class HttpServer(int port)
 {
-    private readonly HttpServerConfigurationBuilder _configurationBuilder = new();
     private readonly HttpServerMiddlewareBuilder _middlewareBuilder = new();
+    private readonly HttpServerDependenciesBuilder _dependenciesBuilder = new();
 
     public async Task StartServer()
     {
-        var configuration = _configurationBuilder.Build();
         var middlewares = _middlewareBuilder.Build();
+        var dependencies = _dependenciesBuilder.Build();
+
+        var configuration = new HttpServerConfiguration(dependencies);
 
         var ipEndPoint = new IPEndPoint(IPAddress.Any, port);
         using var serverSocket = new Socket(ipEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
@@ -22,7 +25,7 @@ public class HttpServer(int port)
 
         while (true)
         {
-            try
+            //try
             {
                 using var connectionSocket = await serverSocket.AcceptAsync();
 
@@ -30,14 +33,14 @@ public class HttpServer(int port)
 
                 await connectionSocket.DisconnectAsync(false);
             }
-            catch (Exception ex)
-            {
-                configuration.Logger.Error(ex.Message);
-            }
+            //catch (Exception ex)
+            //{
+            //    configuration.Logger.Error(ex.Message);
+            //}
         }
     }
 
-    private async Task HandleConnection(Socket connectionSocket, HttpServerConfiguration configuration, List<Func<IMiddleware>> middlewares)
+    private async Task HandleConnection(Socket connectionSocket, HttpServerConfiguration configuration, List<Func<DependencyCollection, IMiddleware>> middlewares)
     {
         // bytes to text
         var buffer = new ArraySegment<byte>(new byte[2048]);
@@ -63,16 +66,16 @@ public class HttpServer(int port)
         connectionSocket.Send(Encoding.UTF8.GetBytes(responseText));
     }
 
-    public HttpServer Configure(Action<HttpServerConfigurationBuilder> builderAction)
+    public HttpServer ConfigureMiddleware(Action<HttpServerMiddlewareBuilder> builderAction)
     {
-        builderAction(_configurationBuilder);
+        builderAction(_middlewareBuilder);
 
         return this;
     }
 
-    public HttpServer ConfigureMiddleware(Action<HttpServerMiddlewareBuilder> builderAction)
+    public HttpServer ConfigureDependencies(Action<HttpServerDependenciesBuilder> builderAction)
     {
-        builderAction(_middlewareBuilder);
+        builderAction(_dependenciesBuilder);
 
         return this;
     }

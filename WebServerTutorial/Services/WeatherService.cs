@@ -1,6 +1,6 @@
 ﻿namespace WebServerTutorial.Services;
 
-public class WeatherService
+public class WeatherService : IWeatherService
 {
     public string GetForecast()
     {
