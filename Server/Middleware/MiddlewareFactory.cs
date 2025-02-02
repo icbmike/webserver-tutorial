@@ -1,5 +1,5 @@
 ﻿using Server.DependencyInjection;
 
-namespace Server;
+namespace Server.Middleware;
 
 public delegate IMiddleware MiddlewareFactory(DependencyCollection dependencyCollection);

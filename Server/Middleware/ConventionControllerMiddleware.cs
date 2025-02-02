@@ -2,7 +2,7 @@
 using System.Text.Json;
 using Server.ActionResults;
 
-namespace Server;
+namespace Server.Middleware;
 
 public class ConventionControllerMiddleware : IMiddleware
 {

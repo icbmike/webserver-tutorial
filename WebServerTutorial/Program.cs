@@ -1,6 +1,7 @@
 ﻿using App.Services;
 using Server;
 using Server.Logger;
+using Server.Middleware;
 
 var httpServer = new HttpServer(9000);
 

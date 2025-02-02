@@ -1,4 +1,6 @@
-﻿namespace Server;
+﻿using Server.Middleware;
+
+namespace Server;
 
 public class RequestHandler
 {

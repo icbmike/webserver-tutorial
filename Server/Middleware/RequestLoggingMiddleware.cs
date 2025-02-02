@@ -1,4 +1,4 @@
-﻿namespace Server;
+﻿namespace Server.Middleware;
 
 public class RequestLoggingMiddleware : IMiddleware
 {
