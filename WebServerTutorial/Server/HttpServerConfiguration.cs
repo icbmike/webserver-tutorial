@@ -7,5 +7,7 @@ public record HttpServerConfiguration(
     DependencyCollection DependencyCollection
 )
 {
-    public ILogger Logger => DependencyCollection.Resolve<ILogger>();
-};
+    public ILogger Logger => DependencyCollection.CanResolve(typeof(ILogger)) 
+        ? DependencyCollection.Resolve<ILogger>()
+        : new SilentLogger();
+}

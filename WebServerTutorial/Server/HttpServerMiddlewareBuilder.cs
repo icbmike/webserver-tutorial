@@ -1,10 +1,8 @@
-﻿using WebServerTutorial.DependencyInjection;
-
-namespace WebServerTutorial.Server;
+﻿namespace WebServerTutorial.Server;
 
 public class HttpServerMiddlewareBuilder
 {
-    private readonly List<Func<DependencyCollection, IMiddleware>> _middlewares = [];
+    private readonly List<MiddlewareFactory> _middlewares = [];
 
     public HttpServerMiddlewareBuilder UseMiddleware(IMiddleware middleware)
     {
@@ -20,9 +18,8 @@ public class HttpServerMiddlewareBuilder
         return this;
     }
 
-    public List<Func<DependencyCollection, IMiddleware>> Build()
+    public List<MiddlewareFactory> Build()
     {
         return _middlewares;
     }
-
 }

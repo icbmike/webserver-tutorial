@@ -1,15 +1,13 @@
-﻿using WebServerTutorial.DependencyInjection;
-
-namespace WebServerTutorial.Server;
+﻿namespace WebServerTutorial.Server;
 
 public class RequestHandler
 {
-    public static HttpResponse HandleRequest(HttpRequest request, HttpServerConfiguration configuration, List<Func<DependencyCollection, IMiddleware>> middlewares)
+    public static HttpResponse HandleRequest(HttpRequest request, HttpServerConfiguration configuration, List<MiddlewareFactory> middlewares)
     {
         return ExecuteMiddleware(request, middlewares, configuration);
     }
 
-    private static HttpResponse ExecuteMiddleware(HttpRequest request, IEnumerable<Func<DependencyCollection, IMiddleware>> middlewares, HttpServerConfiguration configuration)
+    private static HttpResponse ExecuteMiddleware(HttpRequest request, IEnumerable<MiddlewareFactory> middlewares, HttpServerConfiguration configuration)
     {
         var currentMiddleware = middlewares.FirstOrDefault();
         var rest = middlewares.Skip(1);
@@ -23,3 +21,4 @@ public class RequestHandler
         return response;
     }
 }
+
