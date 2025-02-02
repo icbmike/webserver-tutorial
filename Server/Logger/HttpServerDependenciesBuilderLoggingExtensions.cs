@@ -2,7 +2,7 @@
 
 namespace Server.Logger;
 
-public static class HttpServerDependenciesBuilderExtensions
+public static class HttpServerDependenciesBuilderLoggingExtensions
 {
     public static HttpServerDependenciesBuilder SetLogger(this HttpServerDependenciesBuilder builder, ILogger logger)
     {
@@ -10,5 +10,4 @@ public static class HttpServerDependenciesBuilderExtensions
 
         return builder;
     }
-
 }

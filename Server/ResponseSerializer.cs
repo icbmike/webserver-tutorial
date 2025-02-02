@@ -1,4 +1,6 @@
-﻿namespace Server;
+﻿using System.Text;
+
+namespace Server;
 
 public class ResponseSerializer
 {
@@ -6,11 +8,18 @@ public class ResponseSerializer
     {
         var (statusCode, statusText, headers, body) = response;
 
-        return $"""
-                HTTP/1.0 {statusCode} {statusText}
-                {string.Join(Environment.NewLine, headers.Select(kvp => $"{kvp.Key}: {kvp.Value}"))}
+        var responseBuilder = new StringBuilder();
 
-                {body}
-                """;
+        responseBuilder.AppendLine($"HTTP/1.0 {statusCode} {statusText}");
+
+        foreach (var headerLine in headers.Select(kvp => $"{kvp.Key}: {kvp.Value}"))
+        {
+            responseBuilder.AppendLine(headerLine);
+        }
+
+        responseBuilder.AppendLine();
+        responseBuilder.Append(body);
+
+        return responseBuilder.ToString();
     }
 }
