@@ -1,4 +1,4 @@
-﻿namespace Server.Routing;
+﻿namespace Server.AttributeRouting;
 
 public interface IRouteAttribute
 {

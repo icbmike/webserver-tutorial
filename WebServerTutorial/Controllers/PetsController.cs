@@ -1,5 +1,5 @@
 ﻿using Server.ActionResults;
-using Server.Routing;
+using Server.AttributeRouting;
 
 namespace App.Controllers;
 

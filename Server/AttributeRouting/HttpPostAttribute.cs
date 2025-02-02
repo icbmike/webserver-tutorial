@@ -1,4 +1,4 @@
-﻿namespace Server.Routing;
+﻿namespace Server.AttributeRouting;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class HttpPostAttribute : Attribute, IRouteAttribute
